@@ -1,0 +1,26 @@
+{
+  "adapter_id": "e18f2f8f95be8660_bb16b0083302ae2a",
+  "timestamp": "2026-08-30T00:00:00Z",
+  "source_schema": {
+    "kind": "weather observation object",
+    "fields": ["cloud_density", "coords", "timestamp"]
+  },
+  "target_schema": {
+    "kind": "internal weather observation object",
+    "fields": ["sunlight_intensity", "lat", "lng", "recorded_at"]
+  },
+  "models_used": [],
+  "context7_references": [],
+  "test_result": "passed",
+  "positive_cases": 1,
+  "negative_cases": 3,
+  "round_trip": {
+    "status": "not_applicable",
+    "reason": "The mapping is intentionally lossy and no meaningful reverse mapping was defined."
+  },
+  "redactions": [],
+  "notes": [
+    "No external documentation lookup was necessary for the explicitly supplied arithmetic mapping.",
+    "The output timestamp preserves the source ISO 8601 offset."
+  ]
+}

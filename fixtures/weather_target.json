@@ -1,0 +1,1 @@
+{"fields":{"lat":{"type":"float","required":true},"lng":{"type":"float","required":true},"recorded_at":{"format":"ISO8601","type":"datetime","required":true},"sunlight_intensity":{"max":1.0,"min":0.0,"type":"float","required":true}},"kind":"json-object","mapping_policy":{"formula":"1 - cloud_density / 100","timezone":"preserve-source-offset"},"version":"1"}
