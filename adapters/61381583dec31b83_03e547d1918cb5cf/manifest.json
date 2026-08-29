@@ -1,0 +1,26 @@
+{
+  "adapter_id": "61381583dec31b83_03e547d1918cb5cf",
+  "created_at": "2026-08-29T22:00:00Z",
+  "source_fingerprint": "61381583dec31b83",
+  "target_fingerprint": "03e547d1918cb5cf",
+  "mapping_policy": {
+    "source": "GitHub pull_request webhook",
+    "action_policy": "allow opened, closed, reopened, synchronize",
+    "missing_optional_fields": "body -> null; labels and requested_reviewers -> []",
+    "nested_paths": "pull_request.user.login, pull_request.head.ref, pull_request.base.ref, repository.full_name"
+  },
+  "dependency_versions": {"pydantic": "2.x", "python": "3.11"},
+  "validation_authority": "fixtures/test_webhook_candidate.py and PullRequestEvent.model_validate",
+  "models_used": ["deepseek/deepseek-chat"],
+  "synthesis_mode": "two_pass",
+  "context_references": [
+    "https://github.com/pydantic/pydantic/blob/main/docs/migration.md",
+    "https://github.com/pydantic/pydantic/blob/main/docs/api/standard_library_types.md",
+    "https://github.com/pydantic/pydantic/blob/main/docs/errors/validation_errors.md"
+  ],
+  "fixture_ids": ["github_pull_request_opened.json"],
+  "test_result": "passed",
+  "lossiness": ["The adapter emits the target contract only; source fields outside the mapped paths are not retained."],
+  "redactions": [],
+  "status": "valid"
+}

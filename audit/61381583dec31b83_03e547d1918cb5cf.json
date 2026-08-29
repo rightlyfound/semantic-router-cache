@@ -1,0 +1,14 @@
+{
+  "adapter_id": "61381583dec31b83_03e547d1918cb5cf",
+  "timestamp": "2026-08-29T22:00:00Z",
+  "source_schema": "schemas/github_pr_webhook_source.json",
+  "target_schema": "schemas/pull_request_event_target.json",
+  "models_used": ["deepseek/deepseek-chat"],
+  "synthesis_mode": "two_pass",
+  "context7_references": ["/pydantic/pydantic"],
+  "test_result": "passed",
+  "generated_tests": 7,
+  "target_model_validation": "passed",
+  "cached": true,
+  "redactions": []
+}
