@@ -1,0 +1,22 @@
+{
+  "intent": "Summarize the latest pull request activity and post it to Slack",
+  "mode": "dry_run",
+  "status": "blocked_pending_integration_and_approval",
+  "registry_lookup": {
+    "file": "schemas/intent_registry.json",
+    "entries_found": 0
+  },
+  "candidate_chain": [
+    "read pull-request activity",
+    "summarize activity",
+    "post summary to Slack"
+  ],
+  "available_integrations": {
+    "GitHub": "enabled",
+    "Slack": "available but disabled"
+  },
+  "side_effects": ["send_message_to_slack"],
+  "approval_required": true,
+  "action_taken": "No Slack connector was enabled and no message was posted.",
+  "next_step": "Enable and authorize Slack, define destination and summary scope, then rerun the intent in proposal mode before approving any send action."
+}
