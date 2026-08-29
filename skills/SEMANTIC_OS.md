@@ -90,6 +90,18 @@ For a custom MCP or repository-defined interface, inspect the tool schema or the
 
 Choose the available model or provider dynamically. Use a stronger reasoning model for ambiguous architectural contracts, a code-oriented model for deterministic transformations, and a long-context model for large specifications. If a live model catalog is available, use it to confirm model availability and capabilities before selection.
 
+**Output capacity check:** Before selecting a model, verify its available `max_completion_tokens` or per-request output limit in the live catalog. Prefer models with at least 4,000 available output tokens for adapter synthesis. Use this priority when the listed model IDs are available and their output capacity is sufficient:
+
+| Priority | Model | Minimum output | Use when |
+|---|---|---:|---|
+| 1 | `anthropic/claude-sonnet-4` | 8,192 | General adapter synthesis |
+| 2 | `deepseek/deepseek-chat` | 8,192 | Fast, deterministic transformations |
+| 3 | `google/gemini-1.5-pro` | 8,192 | Large schema ingestion |
+| 4 | `anthropic/claude-haiku-4` | 4,096 | Simple mappings or budget-constrained work |
+| 5 | `meta-llama/llama-3.1-70b` | 8,192 | Open-model fallback |
+
+Treat these as preferences rather than guarantees; verify live availability, supported parameters, context length, and effective output capacity. Avoid any model or tier with fewer than 2,048 output tokens for ordinary adapter synthesis. If the highest-ranked available option has fewer than 2,000 output tokens, switch to **two-pass synthesis**: Pass 1 generates only the `translate(data)` function body, with no docstring, explanation, or tests. Pass 2 generates the test suite separately, referencing the function from Pass 1. When this mode is used, record `synthesis_mode: "two_pass"` in the adapter manifest. If even the function-only pass cannot fit, fail safely and do not cache the result.
+
 Ask the model to produce:
 
 1. A short mapping explanation and explicit assumptions.
@@ -123,6 +135,7 @@ On successful validation, prepare the adapter and manifest for GitHub. The manif
   "dependency_versions": {},
   "validation_authority": "...",
   "models_used": [],
+  "synthesis_mode": "single_pass",
   "context_references": [],
   "fixture_ids": [],
   "test_result": "passed",
