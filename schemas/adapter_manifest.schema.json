@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rightlyfound/semantic-router-cache/schemas/adapter_manifest.schema.json",
+  "title": "Adapter Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "adapter_id",
+    "created_at",
+    "source_fingerprint",
+    "target_fingerprint",
+    "mapping_policy",
+    "dependency_versions",
+    "validation_authority",
+    "models_used",
+    "synthesis_mode",
+    "context_references",
+    "fixture_ids",
+    "test_result",
+    "lossiness",
+    "redactions",
+    "status"
+  ],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "adapter_id": { "type": "string", "pattern": "^[0-9a-f]{16}_[0-9a-f]{16}$" },
+    "adapter_id_human_fallback": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "source_fingerprint": { "type": "string" },
+    "target_fingerprint": { "type": "string" },
+    "mapping_policy": { "type": "object" },
+    "dependency_versions": { "type": "object", "additionalProperties": { "type": "string" } },
+    "validation_authority": { "type": "string" },
+    "models_used": { "type": "array", "items": { "type": "string" } },
+    "synthesis_mode": { "type": "string", "enum": ["single_pass", "two_pass", "repair_attempt"] },
+    "context_references": { "type": "array", "items": { "type": "string" } },
+    "fixture_ids": { "type": "array", "items": { "type": "string" } },
+    "test_result": { "type": "string", "enum": ["passed", "failed", "skipped"] },
+    "lossiness": { "type": "array", "items": { "type": "string" } },
+    "redactions": { "type": "array", "items": { "type": "string" } },
+    "status": { "type": "string", "enum": ["proposed", "valid", "stale", "invalid", "deprecated"] },
+    "generator": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": "string" },
+        "prompt_hash": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    }
+  }
+}
