@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Literal, Optional
+from typing import Literal
 
 from pydantic import BaseModel, Field, HttpUrl
 
@@ -8,7 +8,7 @@ class PullRequestEvent(BaseModel):
     event_type: Literal["opened", "closed", "reopened", "synchronize"]
     pr_number: int
     title: str
-    description: Optional[str] = None
+    description: str | None = None
     author_login: str
     source_branch: str
     target_branch: str

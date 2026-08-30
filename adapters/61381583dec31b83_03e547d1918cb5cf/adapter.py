@@ -1,6 +1,6 @@
 def translate(data):
     if not isinstance(data, dict):
-        raise ValueError("data must be a dictionary")
+        raise TypeError("data must be a dictionary")
     required_fields = ['action', 'pull_request', 'repository']
     for field in required_fields:
         if field not in data:

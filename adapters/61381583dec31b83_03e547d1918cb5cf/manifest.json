@@ -1,4 +1,6 @@
 {
+  "schema_version": "1",
+  "canonicalization_version": "1",
   "adapter_id": "61381583dec31b83_03e547d1918cb5cf",
   "created_at": "2026-08-29T22:00:00Z",
   "source_fingerprint": "61381583dec31b83",

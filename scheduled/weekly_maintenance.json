@@ -1,0 +1,13 @@
+{
+  "name": "Weekly Combined Schema Drift and Adapter Health Monitor",
+  "schedule_cron": "0 9 * * MON",
+  "timezone": "Australia/Sydney",
+  "task_uid": "gl1pIq0aqyoYlCf8NRxsy1",
+  "phases": [
+    "schema_drift_monitor",
+    "adapter_health_check"
+  ],
+  "expected_action": "Compare dependency records and safe fixtures; mark affected adapters stale and create redacted GitHub issues only for material findings.",
+  "write_boundary": "No production payloads, no automatic regeneration, no external message without explicit approval.",
+  "runbook": "skills/SEMANTIC_OS.md"
+}

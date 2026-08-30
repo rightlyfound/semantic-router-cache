@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - run: python -m pip install -r requirements-dev.txt
+      - name: Syntax check
+        run: python -m compileall -q models scripts adapters tests
+      - name: Validate manifests
+        run: python scripts/validate_manifest.py adapters/*/manifest.json
+      - name: Check derived adapter index
+        run: python scripts/update_index.py --check --root .
+      - name: Redaction check
+        run: python scripts/redaction_check.py audit fixtures
+      - name: Lint
+        run: ruff check models scripts tests adapters
+      - name: Test
+        run: pytest -q

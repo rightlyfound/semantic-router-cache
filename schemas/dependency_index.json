@@ -1,0 +1,17 @@
+{
+  "schema_version": "1",
+  "dependencies": [
+    {
+      "name": "pydantic",
+      "version_constraint": ">=2.7,<3",
+      "referenced_by": ["61381583dec31b83_03e547d1918cb5cf"],
+      "authority": "https://docs.pydantic.dev/latest/"
+    },
+    {
+      "name": "python",
+      "version_constraint": ">=3.11",
+      "referenced_by": ["e18f2f8f95be8660_bb16b0083302ae2a", "61381583dec31b83_03e547d1918cb5cf"],
+      "authority": "https://docs.python.org/3/"
+    }
+  ]
+}

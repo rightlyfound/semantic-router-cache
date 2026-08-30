@@ -1,4 +1,6 @@
 {
+  "schema_version": "1",
+  "canonicalization_version": "1",
   "adapter_id": "e18f2f8f95be8660_bb16b0083302ae2a",
   "created_at": "2026-08-30T00:00:00Z",
   "source_fingerprint": "e18f2f8f95be8660",
@@ -13,6 +15,7 @@
   },
   "validation_authority": "fixtures/validate_weather.py",
   "models_used": [],
+  "synthesis_mode": "single_pass",
   "context_references": [],
   "fixture_ids": ["weather_source.json", "weather_target.json"],
   "test_result": "passed",
