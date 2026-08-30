@@ -4,6 +4,8 @@ Versioned cache and provenance store for the Semantic OS workflow. Validated ada
 
 The repository is a source of truth and review surface, not a production runtime or low-latency queue.
 
+The maintained implementation roadmap and ready-to-run engineering prompts are in [`docs/roadmap-and-prompts.md`](docs/roadmap-and-prompts.md). Follow the roadmap in order; do not treat the prompt pack as permission to create schedules, push branches, open issues, or deploy services without explicit authorization.
+
 ## Scheduling Notes
 
 Scheduled tasks run in the platform’s effective timezone: **Australia/Sydney**, UTC+10/UTC+11 with daylight saving.

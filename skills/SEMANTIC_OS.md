@@ -254,3 +254,26 @@ The response must always distinguish **discovered facts**, **assumptions**, **ge
 ## Boundaries and upgrade path
 
 This design is appropriate for agent workflows, developer tooling, and low-volume contract translation. It is not a substitute for a production runtime when the user needs millisecond latency, high-throughput streaming, strict service-level objectives, multi-user concurrency, or continuous event processing. In those cases, keep GitHub as the reviewed source of truth but deploy the validated adapters behind a conventional service, queue, database, or cache selected for the workload.
+
+A repository-level validation result does not prove zero packet loss, fixed latency, continuous availability, autonomous schema negotiation, or production readiness. Claims about those properties require a separately deployed runtime with buffering, backpressure, atomic adapter activation, rollback, idempotency, observability, access control, and measured service-level objectives.
+
+## Engineering roadmap and change control
+
+Use `docs/roadmap-and-prompts.md` as the maintained implementation plan. Execute it incrementally, beginning with the manifest contract and validator, then deterministic identity and adapter layout, consolidated CI, governance documentation, and only afterward additional API-bridge or runtime experiments.
+
+Every roadmap change must preserve these gates:
+
+1. **Contract gate:** the source and target records are explicit, canonical, versioned, and free of secrets.
+2. **Generation gate:** model selection verifies live availability, supported parameters, and effective output capacity; constrained models use two-pass synthesis.
+3. **Safety gate:** generated code is statically inspected and isolated from network, filesystem, credentials, subprocesses, and production writes.
+4. **Validation gate:** positive and negative fixtures pass against the authoritative target contract, with optional fields, wrong types, boundary values, malformed inputs, and lossiness covered.
+5. **Promotion gate:** only the intended adapter, manifest, fixtures, audit record, and derived metadata are committed; preview mode never commits.
+6. **Operations gate:** runtime deployment is a separate review involving buffering, rollback, retries, idempotency, telemetry, permissions, and data retention.
+
+Keep one canonical manifest schema and one canonical adapter layout. Derived indexes must be reproducible and checked in CI rather than manually edited. Prefer one consolidated CI workflow and one combined low-frequency maintenance playbook when the platform imposes a schedule limit. Do not create overlapping workflows or schedules merely to mirror documentation sections.
+
+Treat model identifiers, connector availability, documentation locations, dependency versions, and output limits as live facts. Re-check them at execution time and record the selected model, effective capacity, synthesis mode, context references, and validation result in the manifest. Do not permanently designate a model as reliable solely because it succeeded in one session.
+
+Schema evolution must be explicit. Use `schema_version`, define compatible and breaking changes, preserve historical audit records, and move deprecated or superseded intent entries to an archive without deleting provenance. Mark adapters stale when dependencies or contracts change; never silently reuse a stale adapter.
+
+Review project health quarterly and perform a deeper compatibility, dependency, access-control, schedule, and retention review annually. Useful measures include cache-hit rate, synthesis frequency, validation failures, stale-adapter age, CI duration, redaction false positives, time-to-review, and the proportion of adapters with complete fixtures and provenance. These measures describe engineering health; they are not evidence of production service-level performance.
